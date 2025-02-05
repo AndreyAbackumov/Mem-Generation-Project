@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+	<meta charset="UTF-8">
+	<title>Display</title>
+	<style>
+		.container {
+		            display: flex;
+		            justify-content: space-around;
+		}
+		
+		.container2 {
+					text-align: center;
+		}
+	</style>
+</head>
+<body>
+	<div class="container">
+		<div>
+			<img th:src="${imageSrc}" alt="Image from server"/>
+				<div class="container2">
+					<form action="/user_choice" method="GET">
+						<input type="hidden" name="sign" value="like">
+						<button type="submit" style="width: 100px; height: 30px">LIKE</button>
+					</form>
+					<form action="/user_choice" method="GET">
+						<input type="hidden" name="sign" value="not">
+						<button type="submit" style="width: 100px; height: 30px">DON'T LIKE</button>
+					</form>
+				</div>
+		</div>
+</body>
+</html>

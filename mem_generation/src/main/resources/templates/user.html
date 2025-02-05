@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Meme generator</title>
+		<style>
+				.container {
+				            display: flex;
+				            justify-content: space-around;
+				}
+				
+				table {
+					border: 2px solid black;
+					width: 500px;
+				}
+				
+				th, td {
+					border: 2px solid black;
+					text-align: center;
+				}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<div>
+				<h1>ЗАПОЛНИТЕ ФОРМУ</h1>
+				<form action="/user_choice" method="POST">
+					Выберете название мема: <select name="meme">
+						<option value="10-Guy">10 Guy</option>
+						<option value="2nd-Term-Obama">2nd Term Obama</option>
+						<option value="Ace-Primo">Ace Primo</option>
+						<option value="Advice-Dog">Advice Dog</option>
+						<option value="Albert-Einstein-1">Albert Einstein 1</option>
+						<option value="Am-I-The-Only-One-Around-Here">Am I The Only One Around Here</option>
+						<option value="American-Chopper-Argument">American Chopper Argument</option>
+						<option value="And-then-I-said-Obama">And then I said Obama</option>
+						<option value="Albert-Einstein-1">Albert Einstein 1</option>
+						<option value="Asshole-Ref">Asshole Ref</option>
+						<option value="Aw-Yeah-Rage-Face">Aw Yeah Rage Face</option>
+						<option value="Big-Family-Comeback">Big Family Comeback</option>
+						<option value="Bitch-Please">Bitch Please</option>
+						<option value="Intelligent-Dog">Intelligent Dog</option>
+					</select><br />
+					Надпись сверху(не обязательно): <input
+						type="text"
+						name="top"><br />
+					Надпись снизу(не обязательно): <input
+						type="text"
+						name="bottom"><br />
+					<button type="submit">ОТПРАВИТЬ</button>
+				</form>
+				<p th:style="'color:' + red" th:text="${message}"></p>
+			</div>
+			<div>
+				<h1>History of 
+					<span th:text="${persons_name}"></span> mems</h1>
+				<table>
+					<tr>
+						<th>NAME</th>
+						<th>LIKE</th>
+					</tr>
+					<tr th:each="m: ${mems}">
+						<td th:text="${m.mem_name}"></td>
+						<td th:text="${m.like_mem}"></td>
+					</tr>
+				</table>
+			</div>
+		<div class="container">
+			<div>
+				<a href="/main">ВЫЙТИ</a>
+			</div>
+	</body>
+</html>

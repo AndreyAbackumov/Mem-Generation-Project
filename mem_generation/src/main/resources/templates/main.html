@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="UTF-8">
+		<title>Mem Generation</title>
+		<style>
+			.container{
+				text-align: center;
+			}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<form action="/main" method="POST">		
+				Введите Имя: <input type="text" name="name"><br />
+				<button type="submit" style="width: 100px; height: 30px">Log In</button>
+			</form>
+			<p th:style="'color:' + red" th:text="${message}"></p>
+		</div>
+	</body>
+</html>
