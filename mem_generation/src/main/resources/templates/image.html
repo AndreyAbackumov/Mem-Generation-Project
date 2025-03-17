@@ -17,7 +17,7 @@
 <body>
 	<div class="container">
 		<div>
-			<img th:src="${imageSrc}" alt="Image from server"/>
+			<img th:utext="${imageSrc}"/>
 				<div class="container2">
 					<form action="/user_choice" method="GET">
 						<input type="hidden" name="sign" value="like">

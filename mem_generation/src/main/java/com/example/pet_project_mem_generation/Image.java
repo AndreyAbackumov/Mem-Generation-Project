@@ -7,8 +7,6 @@ import org.springframework.ui.Model;
 import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
-import java.util.Collections;
-import java.util.Base64;
 import org.springframework.web.bind.annotation.RequestParam;
 
 @Controller
@@ -79,43 +77,17 @@ public class Image {
 	) {
 		try {
 			
-			String url = "http://apimeme.com/meme?meme=";
+			String url = "https://api.dicebear.com/9.x/";
 			
 			url += meme_name;
-			if (top != null) {
-				url += "&top=";
-				url += top;
-			}
+			url += "/svg";
 			
-			if (bottom != null) {
-				url += "&bottom=";
-				url += bottom;
-			}
 			
-			HttpHeaders headers = new HttpHeaders();
-			headers.setAccept(Collections.singletonList(MediaType.APPLICATION_OCTET_STREAM));
+			ResponseEntity<String> response = rest.getForEntity(url, String.class);
+			String dataUrl = response.getBody();
+			model.addAttribute("imageSrc", dataUrl);
 			
-			HttpEntity<Void> httpEntity = new HttpEntity<>(headers);
-			
-			ResponseEntity<byte[]> response = rest.exchange(
-					url, 
-					HttpMethod.GET,
-					httpEntity,
-					byte[].class);
-			
-			if (response.getStatusCode() == HttpStatus.OK && response.getBody() != null) {
-				byte[] imageBytes = response.getBody();
-				
-				String base64 = Base64.getEncoder().encodeToString(imageBytes);
-				
-				String dataUrl = "data:jpeg;base64," + base64;
-				
-				model.addAttribute("imageSrc", dataUrl);
-			
-				return "image.html";
-			} else {
-				return "error";
-			}
+			return "image.html";
 		} catch (Exception e) {
 			return "error";
 		}
