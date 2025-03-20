@@ -22,3 +22,11 @@ jobs:
         cache: maven
     - name: Build with Maven
       run: mvn -B package --file pom.xml
+
+    - name: Build and push docker image
+      uses: mr-smithers-excellent/docker-build-push@v6
+      with:
+        image: andreyaba/image-generate
+        registry: docker.io
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
