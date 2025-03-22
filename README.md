@@ -8,5 +8,6 @@
 4. Приложение использует встроенную базу данных H2 для сохранения информации о изображениях, которые пользователи просмотрели и которые понравились/не понравились пользователям.
 5. Чтобы отправить форму с какой-либо информацией, нужно использовать только символы 'A'..'Z' или 'a'..'z'.
 6. При каждом push в main запускается сборка проекта и при успешной сборке создается Docker-образ и размещается на docker hub: andreyaba/image-generate  
-7. Внизу размещен бейдж со статусом сборки  
+7. Для запуска приложения нужно запустить контейнер andreyaba/image-generate и перейти по адресу: http://localhost:8080/main
+8. Внизу размещен бейдж со статусом сборки  
 [![Java CI with Maven](https://github.com/AndreyAbackumov/Mem-Generation-Project/actions/workflows/ci.yml/badge.svg)](https://github.com/AndreyAbackumov/Mem-Generation-Project/actions/workflows/ci.yml)
